@@ -1,4 +1,4 @@
-FROM ubuntu:22.04 as tomcat
+FROM ubuntu:22.04 AS tomcat
 
 ARG TOMCAT_VERSION=9.0.89
 ARG CORS_ENABLED=false
@@ -54,7 +54,7 @@ RUN apt purge -y  \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /tmp/*
 
-FROM tomcat as download
+FROM tomcat AS download
 
 ARG GS_VERSION=2.25.1
 ARG GS_BUILD=release
@@ -70,7 +70,7 @@ RUN echo "Downloading GeoServer ${GS_VERSION} ${GS_BUILD}" \
     && unzip -q /tmp/geoserver.war -d /tmp/geoserver \
     && rm /tmp/geoserver.war
 
-FROM tomcat as install
+FROM tomcat AS install
 
 ARG GS_VERSION=2.25.1
 ARG GS_BUILD=release
